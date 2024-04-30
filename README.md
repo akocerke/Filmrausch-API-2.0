@@ -5,6 +5,7 @@
 1. [Beschreibung](#beschreibung)
 2. [Funktionen](#funktionen)
 3. [Technologiestack](#technologiestack)
+4. [API-Endpunkte zur Verwaltung von Favoriten](#api-endpunkte-zur-verwaltung-von-favoriten)
 
 ## Beschreibung
 FilmRausch ist eine Webanwendung, die den Benutzern die neuesten Film- und Serienempfehlungen bietet. Sie integriert die TMDb-API, um umfassende Informationen über Filme und Serien abzurufen.
@@ -31,4 +32,68 @@ Mit dieser umfassenden Funktionalität bietet FilmRausch eine intuitive Plattfor
 
   - **Favoritenverwaltung:** Benutzer können Filme und Serien zu ihren Favoriten hinzufügen und entfernen. Diese Favoritenlisten werden in der MySQL-Datenbank gespeichert und sind mit den jeweiligen Benutzerkonten verknüpft, um eine personalisierte Erfahrung zu ermöglichen.
 
- 
+## API-Endpunkte zur Verwaltung von Favoriten
+
+#### GET /favorites/all
+**Beschreibung:** Abfrage aller vorhandenen Favoriten.  
+
+**Rückgabe:** Gibt eine Liste aller Favoriten zurück.
+#
+
+#### GET /favorites/byUserId/{userId}
+**Beschreibung:** Abfrage der Favoriten eines bestimmten Benutzers anhand seiner ID.  
+**Parameter:**  
+  - `userId`: Die eindeutige Identifikationsnummer des Benutzers.  
+
+**Rückgabe:** Gibt eine Liste der Favoriten des spezifizierten Benutzers zurück.
+#
+
+#### POST /favorites/add
+**Beschreibung:** Hinzufügen eines neuen Favoriten.  
+**Body:**  
+  - `userId`: ID des Benutzers, der den Favoriten hinzufügt.  
+  - `serie_id` oder `movie_id`: ID des Items, das favorisiert wird.  
+
+**Rückgabe:** Bestätigung der erfolgreichen Hinzufügung.
+#
+
+#### DEL /favorites/delete
+**Beschreibung:** Löschen eines spezifischen Favoriten.  
+**Parameter:** 
+  - `userId`: ID des Benutzers, der den Favoriten löschen möchte.
+  - `serie_id` oder `movie_id`: Die ID des zu löschenden Favoriten.  
+
+**Rückgabe:** Bestätigung des Löschens.
+#
+
+#### GET /users/all
+**Beschreibung:** Abfrage aller vorhandenen Benutzer.  
+
+**Rückgabe:** Gibt eine Liste aller registrierten Benutzer zurück.
+#
+
+### Benutzerauthentifizierung
+#
+
+#### POST /auth/register
+**Beschreibung:** Ermöglicht neuen Benutzern, sich bei FilmRausch zu registrieren.  
+**Body:**  
+  - `username`: Gewünschter Benutzername.  
+  - `password`: Gewünschtes Passwort.  
+
+**Rückgabe:** Bestätigung der erfolgreichen Registrierung oder Fehlermeldung.
+#
+
+#### POST /auth/login
+**Beschreibung:** Ermöglicht Benutzern, sich bei FilmRausch anzumelden.  
+**Body:**  
+  - `username`: Benutzername.  
+  - `password`: Passwort.  
+
+**Rückgabe:** Authentifizierungstoken und Benutzerdaten oder Fehlermeldung.
+#
+
+#### POST /auth/logout
+**Beschreibung:** Ermöglicht Benutzern, sich sicher von FilmRausch abzumelden. 
+
+**Rückgabe:** Löschen des Authentifizierungstoken und Bestätigung der erfolgreichen Abmeldung.
