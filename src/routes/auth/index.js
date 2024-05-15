@@ -1,7 +1,7 @@
 // auth/index.js
 const { Router } = require("express");
 const Users = require("../../database/models/users");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const { StatusCodes } = require("http-status-codes");
 const jwt = require('jsonwebtoken');
 
