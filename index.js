@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const { AppRouter } = require("./src/routes");
+const serverless = require('serverless-http');
 
 // Zugriff auf Umgebungsvariablen
 const { PORT } = process.env;
