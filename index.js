@@ -15,6 +15,8 @@ app.use(cors());
 app.use("/filmrausch", AppRouter);
 
 // App hört im folgenden auf den Port, welcher über die Umgebungsvariable definiert ist
-app.listen(PORT, () => {
-  console.log(`Filmrausch app listening on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Filmrausch app listening on port ${PORT}`);
+// });
+
+module.exports.handler = serverless(app);
